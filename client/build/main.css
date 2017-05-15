@@ -1,142 +1,105 @@
-body {
-  width: 100%;
-  min-width: 500px;
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+header{
   display: flex;
-  flex-direction: column;
-  margin: auto;
-  background: radial-gradient( rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 1) 100%), url('bubbles.png') no-repeat;  background-repeat: repeat;
-  font-family: sans-serif;
-  color: white;
+  flex-direction: row;
+  justify-content: center;
 }
 
-h1 {
-  font-size: 4em;
-  margin: 0;
-  text-shadow: 1px 1px 1px #ff3300;
+header h1{
+  margin-top: 50px;
+  font-size: 3em;
 }
 
-h2 {
-  font-size: 2em;
-  margin: auto;
-  font-family: 'Love Ya Like A Sister', cursive;
-  text-shadow: 1px 1px 1px #ff3300;
+#logo{
+  height: 90px;
+  margin: 30px;
+}
+
+#sub-heading{
+  margin-bottom: 30px;
   text-align: center;
 }
 
-header {
-  padding-top: 10px;
+#search{
   display: flex;
   flex-direction: row;
-  margin: auto;
-  font-family: 'Love Ya Like A Sister', cursive;
+  justify-content: center;
+  margin-bottom: 30px;
+
 }
 
-#main-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: auto;
-}
 
-main {
+
+#search-box{
+  margin: 20px;
   width: 500px;
-  display: flex;
-  flex-direction: row;
-  margin: auto;
+  height: 30px;
+  font-size: 1em;
+
 }
 
-article {
-  margin: auto;
+#near-me-button{
+  background-color: #F98B00;
+  border: none;
+  color: white;
+  font-size: 1em;
+  padding: 10px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 20px;
 }
 
 #map-content {
-  width: 500px;
+  width: 550px;
   height: 500px;
   color: black;
 }
 
-#list-container {
-  width: 500px;
+#main-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
-#list-content {
-  width: 500px;
+#list-content{
   height: 500px;
-  overflow: scroll;
-  background-color: rgba(255, 204, 153, 0.5);
-  font-size: 1em;
-  text-shadow: 1px 1px black;
+  width: 550px;
+  overflow-y: scroll;
 }
 
-#list-content p, img, h4{
+#list-content h3{
+  text-align: center;
+}
+
+#list-content::-webkit-scrollbar {
+      width: 15px;
+}
+
+#list-content::-webkit-scrollbar-track {
+      background-color: #E2DCDC;
+}
+
+#list-content::-webkit-scrollbar-thumb {
+      background-color: #F98B00; 
+}
+
+.pub-name{
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #E2DCDC;
+  padding-bottom: 10px;
+}
+
+.pub-div p, ul{
   margin-left: 20px;
 }
 
-#list-title {
-  background-color: #ff6600;
-  align-content: center;
+.pub-image{
+  margin-left: 20px;
 }
 
-#list-name {
-  font-size: 1em;
-  height: 30px;
-  line-height: 30px;
-  margin: 0;
-  background-image: linear-gradient( to right , #ff9933 , #ff6600 );
-  text-align: center;
-  text-shadow: 1px 1px black;
-}
-
-#list-key {
-  height: 30px;
-  width: 500px;
-  margin: 0;
-  background-image: url("socialmediabutton.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: #ff8000;
-  text-align: center;
-  text-shadow: 1px 1px black;
-}
-
-#about-box {
-  font-size: 1em;
-  height: 30px;
-  margin: 0;
-  background-image: linear-gradient( to right , #ff9933 , #ff6600 );
-  text-align: center;
-  text-shadow: 1px 1px black;
-}
-
-button {
-  width: 500px;
-  margin: 0;
-  height: 30px;
-  border-width: thick;
-  border-radius: 0px;
-  border-color: #ff6600;
-  background-image: linear-gradient( to right, #ff9933 , #ff6600 );
-  font-size: 1em;
-  color: white;
-  text-shadow: 1px 1px black;
-}
-
-input {
-  width: 488px;
-  font-size: 1em;
-  border-color: #ff6600;
-  border-width: thick;
-  text-align: center;
-}
-
-#logo {
-  height: 75px;
-  width: 75px;
-  margin: 0;
-}
-
-body .pub-name {
-  display: flex;
-  flex-direction: column;
-}

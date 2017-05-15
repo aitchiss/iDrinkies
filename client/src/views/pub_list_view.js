@@ -97,6 +97,7 @@ PubListView.prototype = {
       var pubImg = document.createElement('img')
       pubImg.src = pub.img
       pubImg.width = 200
+      pubImg.classList.add('pub-image')
       div.appendChild(pubImg)
     }
   },

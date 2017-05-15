@@ -58,7 +58,7 @@ MapWrapper.prototype = {
       }
     });
 
-    //get current position and perform the next few tasks with it, so you have access to the distance value
+    //get current position and perform the next few tasks with it, so you have access to the distance value - this allows the distance between current position and pub to be displayed
     navigator.geolocation.getCurrentPosition(function ( position ) {
       //fetch the current location's lattitude and longitude and make an object
       var currentLocation = {
@@ -66,49 +66,47 @@ MapWrapper.prototype = {
         lng: position.coords.longitude
       }
 
-      //use your distance calculator to show the distance between the pub marker and the user
+      //use distance calculator to show the distance between the pub marker and the user
       distanceCalculator.calculateDistance(currentLocation, coords, function(distance){
 
-      //populate the info window for the pub. First, define what goes inside the info window div
-      var windowContents = '<div>' +
-      '<h3>' + pub.name + '</h3>' +
-      '<p>Distance from you: ' + distance + '</p>' +
-      '<p>' + pub.address + '</p>' +
-      '<img src="' + pub.img + '" width="200">' +
-      '</div>'
+        //populate the info window for the pub. First, define what goes inside the info window div
+        var windowContents = '<div>' + '<h3>' + pub.name + '</h3>' +
+        '<p>Distance from you: ' + distance + '</p>' +
+        '<p>' + pub.address + '</p>' +
+        '<img src="' + pub.img + '" width="200">' +
+        '</div>'
 
-      //create the pub info window
-      var pubInfo = new google.maps.InfoWindow({content: windowContents})
+        //create the pub info window
+        var pubInfo = new google.maps.InfoWindow({content: windowContents})
 
-      //now that we have our info window, we need listeners on the marker 
+        //now that we have our info window, we need listeners on the marker 
+        //add the listener for the pub info window's creation to the pub's marker
+        marker.addListener('click', function(){
+          var allPubDivs = document.querySelectorAll('.pub-div')
+          var correctDiv
 
-      //add the listener for the pub info window's creation to the pub's marker
-      marker.addListener('click', function(){
-        var allPubDivs = document.querySelectorAll('.pub-div')
-        var correctDiv
+          //find the correct div to expand/contract on marker click
+          allPubDivs.forEach(function(div){
+            //first check that you've got the right pub
+            if (div.id === 'pub-entry' + pub.id){
+              correctDiv = div
+            }
+          }.bind(this))
 
-        //set the div for each pubs
-        allPubDivs.forEach(function(div){
-          //first check that you've got the right pub
-          if (div.id === 'pub-entry' + pub.id){
-            correctDiv = div
+          //then, if the marker is clicked, activate that pub's drop-down
+          if (correctDiv.childNodes.length <= 2){
+            pubLister.dropDownInfo(pub,correctDiv)
+          } else {
+            pubLister.removeDropDownInfo(correctDiv)
           }
-        }.bind(this))
+          })
 
-        //then, if the marker is clicked, activate that pub's drop-down
-        if (correctDiv.childNodes.length <= 2){
-          pubLister.dropDownInfo(pub,correctDiv)
-        } else {
-          pubLister.removeDropDownInfo(correctDiv)
-        }
+        //make the pub info window load when the marker is clicked
+        marker.addListener('click',function(){
+          pubInfo.open(this.googlemap, marker)
         })
-
-      //make the pub info window load when the marker is clicked
-      marker.addListener('click',function(){
-        pubInfo.open(this.googlemap, marker)
-      })
-        return marker;
-      })
+          return marker;
+        })
 
     }.bind(this))
 
